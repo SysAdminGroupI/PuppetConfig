@@ -4,6 +4,7 @@ node 'db-i.foo.org.nz'{
  include mariadb
  include puppetconf
  include userconf
+ include nagios
  package {
   'vim': ensure => present
  }
@@ -14,6 +15,7 @@ node 'app-i.foo.org.nz'{
  include ntp_service
  include puppetconf
  include userconf
+ include nagios
  package {
   'vim': ensure => present
  }
@@ -24,6 +26,7 @@ node 'back-i.foo.org.nz'{
  include ntp_service  
  include puppetconf
  include userconf
+ include nagios
  package {
   'vim': ensure => present
  }

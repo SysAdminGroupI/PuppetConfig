@@ -1,39 +1,36 @@
 class userconf {
 
-
-
 user { 'nobody':
 	name => 'nobody',
 	ensure => 'present',
-	gid => 'testgroup',
+	gid => 'nogroup',
 	home => '/home/nonexistent',
 	shell => '/usr/sbin/nologin',
-	require => Group['othergroup']
+	require => Group['nogroup']
 }
-group{'othergroup':
+group {'nogroup':
 	ensure => 'present'
-
 }
 user {'student':
 	name => 'student',
 	ensure => 'present',
-	gid => 'studentgroup',
+	gid => 'student',
 	home => '/home/student',
 	shell => '/bin/bash',
-	require => Group['studentgroup']
+	require => Group['student']
 }
-group {'studentgroup':
+group {'student':
 	ensure => 'present'
 }
 user {'manager':
 	name => 'manager',
 	ensure => 'present',
-	gid => 'managergroup',
+	gid => 'manager',
 	home => '/home/manager/',
-	shell => 'bin/bash',
-	require => Group['managergroup']
+	shell => '/bin/bash',
+	require => Group['manager']
 }
-group {'managergroup':
+group {'manager':
 	ensure => 'present'
 }
 }
