@@ -1,11 +1,17 @@
 class nagios::install {
-	package{"nagios3":
+	package{ "nagios3":
 		ensure => present,
-}
-	user{"nagios":
+	}
+
+	package{ "nagios-nrpe-server":
 		ensure => present,
-}
-	group {"nagios":
+	}
+
+	user{ "nagios":
 		ensure => present,
-}
+	}
+
+	group{ "nagios":
+		ensure => present,
+	}
 }

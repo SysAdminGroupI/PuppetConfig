@@ -66,7 +66,6 @@ class nagios::config
 		notification_interval => 30,
 		notification_options => "d,u,r",
 		mode => "0444",
-
 	}	
 
 	nagios_hostgroup { "my-ssh-servers":
@@ -76,6 +75,12 @@ class nagios::config
 		members =>"db-i.foo.org.nz, app-i.foo.org.nz, back-i.foo.org.nz",
 	}
 
+	nagios_hostgroup{"remote-disks":
+		target => "/etc/nagios-plugins/config/check_nrpe.cfg",
+		mode => "0444",
+		alias => "My Remote Disks",
+		members =>"db-i.foo.org.nz",
+	}
 
 	nagios_hostgroup { "my-database-servers":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
@@ -97,7 +102,7 @@ class nagios::config
 		notification_period => "24x7",
 		notification_options => "w,u,c",
 		contact_groups => "admins",
-		
+		mode => "0644",
 	}
 
 	nagios_service { "mysql":
@@ -113,5 +118,22 @@ class nagios::config
 		notification_period => "24x7",
 		notification_options => "w,u,c",
 		contact_groups => "admins",
+		mode => "0644",
+	}
+
+	nagios_service { "nrpe":
+		service_description => "nrpe servers",
+		hostgroup_name => "remote-disks",
+		target => "/etc/nagios3/conf.d/ppt_services.cfg",
+		check_command => "check_nrpe!check_df",
+		max_check_attempts => 3,
+		retry_check_interval => 1,
+		normal_check_interval => 5,
+		check_period => "24x7",
+		notification_interval => 30,
+		notification_period => "24x7",
+		notification_options => "w,u,c",
+		contact_groups => "admins",
+		mode => "0644",
 	}
 }

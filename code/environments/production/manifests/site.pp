@@ -1,3 +1,10 @@
+node 'mgmt-i.foo.org.nz'{
+ include nagios
+ package {
+  'vim': ensure => present
+ }
+}
+
 node 'db-i.foo.org.nz'{
  include sudo
  include ntp_service
