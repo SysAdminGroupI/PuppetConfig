@@ -41,7 +41,6 @@ class nagios::config
 		notification_interval => 30,
 		notification_options => "d,u,r",
 		mode => "0444",
-
 	}
 
 	nagios_host { "app-i.foo.org.nz":
