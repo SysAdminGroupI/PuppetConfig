@@ -92,7 +92,7 @@ class nagios::config
 		target => "/etc/nagios-plugins/config/check_nrpe.cfg",
 		mode => "0444",
 		alias => "My Remote Disks",
-		members =>"db-i.foo.org.nz",
+		members =>"db-i.foo.org.nz, app-i.foo.org.nz, back-i.foo.org.nz",
 	}
 	
 	# Nagios Services

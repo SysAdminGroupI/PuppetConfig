@@ -22,6 +22,7 @@ node 'app-i.foo.org.nz' {
 	include ntp_service
 	include puppetconf
 	include userconf
+	include nrpe
 	package {
 		'vim': ensure => present
 	}
@@ -32,6 +33,7 @@ node 'back-i.foo.org.nz' {
 	include ntp_service  
 	include puppetconf
 	include userconf
+	include nrpe
 	package {
 		'vim': ensure => present
 	}
