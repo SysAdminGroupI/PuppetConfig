@@ -117,6 +117,28 @@ class nagios::config
 		members =>"db-i.foo.org.nz, app-i.foo.org.nz, back-i.foo.org.nz",
 	}
 	
+	#Nagios Contacts
+	
+	nagios_contact { 'slack':
+        target => '/etc/nagios3/conf.d/ppt_contacts.cfg',
+        alias => 'Slack',
+		service_notification_period => '24x7',
+        host_notification_period => '24x7',
+		service_notification_options => 'w,u,c,r',
+        host_notification_options => 'd,r',
+		service_notification_commands => 'notify-service-by-slack',
+		host_notification_commands => 'notify-host-by-slack',
+		email => 'root@localhost',
+	}
+	
+	#Nagios Contact Groups
+	
+	nagios_contactgroup { 'slackgroup':
+	  target => '/etc/nagios3/conf.d/ppt_contactgroups.cfg',
+	  alias => 'Slack channel',
+	  members => 'slack', 
+	}
+	
 	# Nagios Services
 
 	nagios_service { "ssh":
