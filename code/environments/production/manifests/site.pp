@@ -1,9 +1,15 @@
 node 'mgmt-i.foo.org.nz' {
 	include nagios
-	package {
-		'vim': ensure => present,
-		'libwww-perl': ensure => present,
-		'libcrypt-ssleay-perl': ensure => present,
+	package { 'vim': 
+		ensure => present,
+	}
+	
+	package { 'libwww-perl': 
+		ensure => present,
+	}
+	
+	package { 'libcrypt-ssleay-perl': 
+		ensure => present,
 	}
 }
 
