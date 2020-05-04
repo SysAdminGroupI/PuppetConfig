@@ -89,7 +89,7 @@ class nagios::config
 	}	
 	
 	nagios_hostgroup{"remote-disks":
-		target => "/etc/nagios-plugins/config/check_nrpe.cfg",
+		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
 		mode => "0444",
 		alias => "My Remote Disks",
 		members =>"db-i.foo.org.nz, app-i.foo.org.nz, back-i.foo.org.nz",
