@@ -1,5 +1,8 @@
 class nagios::config
 {
+
+	# Managed Files
+
 	file { "/etc/nagios3/nagios.cfg":
 		ensure => present,
 		source_permissions => 'ignore',
@@ -30,6 +33,8 @@ class nagios::config
 		require => Class["nagios::install"],
 		notify => Class["nagios::service"] 
 	}
+	
+	# Nagios Hosts
 
 	nagios_host { "db-i.foo.org.nz":
 		target => "/etc/nagios3/conf.d/ppt_hosts.cfg",
@@ -66,6 +71,8 @@ class nagios::config
 		notification_options => "d,u,r",
 		mode => "0444",
 	}	
+	
+	# Nagios Hostgroups
 
 	nagios_hostgroup { "my-ssh-servers":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
@@ -74,19 +81,21 @@ class nagios::config
 		members =>"db-i.foo.org.nz, app-i.foo.org.nz, back-i.foo.org.nz",
 	}
 
-	nagios_hostgroup{"remote-disks":
-		target => "/etc/nagios-plugins/config/check_nrpe.cfg",
-		mode => "0444",
-		alias => "My Remote Disks",
-		members =>"db-i.foo.org.nz",
-	}
-
 	nagios_hostgroup { "my-database-servers":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
 		mode => "0444",
 		alias => "My database servers",
 		members =>"db-i.foo.org.nz",
 	}	
+	
+	nagios_hostgroup{"remote-disks":
+		target => "/etc/nagios-plugins/config/check_nrpe.cfg",
+		mode => "0444",
+		alias => "My Remote Disks",
+		members =>"db-i.foo.org.nz",
+	}
+	
+	# Nagios Services
 
 	nagios_service { "ssh":
 		service_description => "ssh servers",
