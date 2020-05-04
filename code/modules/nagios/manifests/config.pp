@@ -34,6 +34,17 @@ class nagios::config
 		notify => Class["nagios::service"] 
 	}
 	
+	file { "/usr/lib/nagios/plugins/nagios.pl":
+		ensure => present,
+		source_permissions => 'ignore',
+		source => 'puppet:///modules/nagios/nagios.pl',
+		mode => '0755',
+		owner => 'root',
+		group => 'root',
+		require => Class["nagios::install"],
+		notify => Class["nagios::service"] 
+	}
+	
 	# Nagios Hosts
 
 	nagios_host { "db-i.foo.org.nz":
