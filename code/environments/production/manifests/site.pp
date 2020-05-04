@@ -11,6 +11,7 @@ node 'db-i.foo.org.nz' {
 	include mariadb
 	include puppetconf
 	include userconf
+	include nrpe
 	package {
 		'vim': ensure => present
 	}
