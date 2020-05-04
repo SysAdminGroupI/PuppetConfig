@@ -129,6 +129,7 @@ class nagios::config
 		service_notification_commands => 'notify-service-by-slack',
 		host_notification_commands => 'notify-host-by-slack',
 		email => 'root@localhost',
+		mode => 0444,
 	}
 	
 	#Nagios Contact Groups
@@ -137,6 +138,7 @@ class nagios::config
 	  target => '/etc/nagios3/conf.d/ppt_contactgroups.cfg',
 	  alias => 'Slack channel',
 	  members => 'slack', 
+	  mode => 0444,
 	}
 	
 	# Nagios Services
