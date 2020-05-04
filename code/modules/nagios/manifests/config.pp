@@ -45,6 +45,17 @@ class nagios::config
 		notify => Class["nagios::service"] 
 	}
 	
+	file { "/etc/nagios-plugins/config/slack.cfg":
+		ensure => present,
+		source_permissions => 'ignore',
+		source => 'puppet:///modules/nagios/slack.cfg',
+		mode => '0644',
+		owner => 'root',
+		group => 'root',
+		require => Class["nagios::install"],
+		notify => Class["nagios::service"] 
+	}
+	
 	# Nagios Hosts
 
 	nagios_host { "db-i.foo.org.nz":
