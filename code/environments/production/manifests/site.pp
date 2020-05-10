@@ -31,6 +31,7 @@ node 'app-i.foo.org.nz' {
 	include puppetconf
 	include userconf
 	include nrpe
+	include owncloud
 	package {
 		'vim': ensure => present
 	}
