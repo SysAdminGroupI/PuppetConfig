@@ -33,5 +33,6 @@ class owncloud::install {
 	
 	package{ "owncloud-files":
 		ensure => present,
+		require => Class["owncloud::config"],
 	}
 }

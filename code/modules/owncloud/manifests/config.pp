@@ -1,7 +1,9 @@
 class owncloud::config {
 	file { "/etc/apt/sources.list.d/owncloud.list":
 		ensure => present,
-		mode => '0775',
+		source_permissions => 'ignore',
+		source => 'puppet:///modules/owncloud/owncloud.list',
+		mode => '0660',
 		owner => 'root',
 		group => 'root',
 	}
