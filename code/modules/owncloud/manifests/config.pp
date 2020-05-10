@@ -1,0 +1,3 @@
+class owncloud::config {
+
+}
