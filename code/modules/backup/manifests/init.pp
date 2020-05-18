@@ -1,5 +1,5 @@
 class backup {
-	file { 'home/student/backup.sh':
+	file { '/home/student/backup.sh':
 		ensure => present,
 		source_permissions => 'ignore',
 		owner => 'student',
