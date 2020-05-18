@@ -20,7 +20,6 @@ node 'db-i.foo.org.nz' {
 	include puppetconf
 	include userconf
 	include nrpe
-	include backup
 	package {
 		'vim': ensure => present
 	}
@@ -33,7 +32,6 @@ node 'app-i.foo.org.nz' {
 	include userconf
 	include nrpe
 	include owncloud
-	include backup
 	package {
 		'vim': ensure => present
 	}
@@ -45,7 +43,6 @@ node 'back-i.foo.org.nz' {
 	include puppetconf
 	include userconf
 	include nrpe
-	include backup
 	package {
 		'vim': ensure => present
 	}
