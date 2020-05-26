@@ -1,5 +1,5 @@
 class owncloud::config {
-	exec { 'wget -nv https://download.owncloud.org/download/repositories/production/Ubuntu_19.10/Release.key -O Release.key' | apt-key add - < Release.key':
+	exec { 'wget -nv https://download.owncloud.org/download/repositories/production/Ubuntu_19.10/Release.key -O Release.key | apt-key add - < Release.key':
 		user => 'root',
 		creates => '/home/student/Release.key',
 		path => [ '/bin/','/sbin/','/usr/bin/','/usr/sbin/' ],
