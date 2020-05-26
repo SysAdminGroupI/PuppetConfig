@@ -20,4 +20,31 @@ class owncloud::config {
 		owner => 'root',
 		group => 'root',
 	}
+	
+	file { '/etc/apache2/conf-available/ssl-params.conf':
+		ensure => present,
+		source_permissions => 'ignore',
+		source => 'puppet:///modules/owncloud/ssl-params.conf',
+		mode => '0664',
+		owner => 'root',
+		group => 'root',
+	}
+	
+	file { '/etc/apache2/sites-enabled/000-default.conf':
+		ensure => present,
+		source_permissions => 'ignore',
+		source => 'puppet:///modules/owncloud/000-default.conf',
+		mode => '0777',
+		owner => 'root',
+		group => 'root',
+	}
+	
+	file { '/etc/apache2/sites-enabled/default-ssl.conf':
+		ensure => present,
+		source_permissions => 'ignore',
+		source => 'puppet:///modules/owncloud/default-ssl.conf',
+		mode => '0777',
+		owner => 'root',
+		group => 'root',
+	}
 }
