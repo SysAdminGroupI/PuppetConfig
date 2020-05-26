@@ -1,4 +1,9 @@
 class owncloud::install {
+	exec { 'apt update':
+		user => 'root',
+		path => [ '/bin/','/sbin/','/usr/bin/','/usr/sbin/' ],
+	}
+
 	package{ "php-bz2":
 		ensure => present,
 	}
