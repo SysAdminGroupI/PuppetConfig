@@ -1,6 +1,5 @@
 class nagios::config
 {
-
 	# Managed Files
 
 	file { "/etc/nagios3/nagios.cfg":
@@ -110,7 +109,7 @@ class nagios::config
 		members =>"db-i.foo.org.nz",
 	}	
 	
-	nagios_hostgroup{"remote-disks":
+	nagios_hostgroup{ "remote-disks":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
 		mode => "0444",
 		alias => "My Remote Disks",
@@ -136,7 +135,7 @@ class nagios::config
 	
 	nagios_contactgroup { 'slackgroup':
 	  target => '/etc/nagios3/conf.d/ppt_contactgroups.cfg',
-	  alias => 'Slack channel',
+	  alias => 'Slack Channel',
 	  members => 'slack', 
 	  mode => '0644',
 	}
@@ -150,7 +149,7 @@ class nagios::config
 		check_command => "check_ssh",
 		max_check_attempts => 3,
 		retry_check_interval => 1,
-		normal_check_interval => 5,
+		normal_check_interval => 1,
 		check_period => "24x7",
 		notification_interval => 30,
 		notification_period => "24x7",
@@ -166,7 +165,7 @@ class nagios::config
 		check_command => "check_mysql_cmdlinecred!nagios!P@ssw0rd",
 		max_check_attempts => 3,
 		retry_check_interval => 1,
-		normal_check_interval => 5,
+		normal_check_interval => 1,
 		check_period => "24x7",
 		notification_interval => 30,
 		notification_period => "24x7",
@@ -182,7 +181,7 @@ class nagios::config
 		check_command => "check_nrpe_1arg!check_hd",
 		max_check_attempts => 3,
 		retry_check_interval => 1,
-		normal_check_interval => 5,
+		normal_check_interval => 1,
 		check_period => "24x7",
 		notification_interval => 30,
 		notification_period => "24x7",
