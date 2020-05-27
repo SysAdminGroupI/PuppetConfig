@@ -68,7 +68,7 @@ class nagios::config
 		notification_interval => 30,
 		notification_options => "d,w,u,r",
 		contact_groups => "slackgroup",
-		mode => "0444",
+		mode => "0644",
 	}
 
 	nagios_host { "app-i.foo.org.nz":
@@ -80,7 +80,7 @@ class nagios::config
 		notification_period => "24x7",
 		notification_interval => 30,
 		notification_options => "d,u,r",
-		mode => "0444",
+		mode => "0644",
 	}
 
 	nagios_host { "back-i.foo.org.nz":
@@ -92,28 +92,28 @@ class nagios::config
 		notification_period => "24x7",
 		notification_interval => 30,
 		notification_options => "d,u,r",
-		mode => "0444",
+		mode => "0644",
 	}	
 	
 	# Nagios Hostgroups
 
 	nagios_hostgroup { "my-ssh-servers":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
-		mode => "0444",
+		mode => "0644",
 		alias => "My SSH servers",
 		members =>"db-i.foo.org.nz, app-i.foo.org.nz, back-i.foo.org.nz",
 	}
 
 	nagios_hostgroup { "my-database-servers":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
-		mode => "0444",
+		mode => "0644",
 		alias => "My database servers",
 		members =>"db-i.foo.org.nz",
 	}	
 	
 	nagios_hostgroup{ "remote-disks":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
-		mode => "0444",
+		mode => "0644",
 		alias => "My Remote Disks",
 		members =>"db-i.foo.org.nz, app-i.foo.org.nz, back-i.foo.org.nz",
 	}
