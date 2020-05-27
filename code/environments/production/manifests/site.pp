@@ -1,5 +1,6 @@
 node 'mgmt-i.foo.org.nz' {
 	include nagios
+	include cron
 	package { 'vim': 
 		ensure => present,
 	}
@@ -14,6 +15,7 @@ node 'mgmt-i.foo.org.nz' {
 }
 
 node 'db-i.foo.org.nz' {
+	include cron
 	include sudo
 	include ntp_service
 	include mariadb
@@ -26,6 +28,7 @@ node 'db-i.foo.org.nz' {
 }
 
 node 'app-i.foo.org.nz' {
+	include cron
 	include sudo
 	include ntp_service
 	include puppetconf
@@ -38,6 +41,7 @@ node 'app-i.foo.org.nz' {
 }
 
 node 'back-i.foo.org.nz' {
+	include cron
 	include sudo
 	include ntp_service  
 	include puppetconf
