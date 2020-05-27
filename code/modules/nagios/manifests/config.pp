@@ -64,8 +64,10 @@ class nagios::config
 		max_check_attempts => 3,
 		check_command => "check-host-alive",
 		notification_period => "24x7",
+		normal_check_interval => 1,
 		notification_interval => 30,
-		notification_options => "d,u,r",
+		notification_options => "d,w,u,r",
+		contact_groups => "slackgroup",
 		mode => "0444",
 	}
 
