@@ -81,6 +81,7 @@ class nagios::config
 		notification_period => "24x7",
 		notification_interval => 10,
 		notification_options => "d,u,r",
+		contact_groups => "slackgroup",
 		mode => "0644",
 	}
 
@@ -94,6 +95,21 @@ class nagios::config
 		notification_period => "24x7",
 		notification_interval => 10,
 		notification_options => "d,u,r",
+		contact_groups => "slackgroup",
+		mode => "0644",
+	}
+
+	nagios_host { "test-i.foo.org.nz":
+		target => "/etc/nagios3/conf.d/ppt_hosts.cfg",
+		alias => "test",
+		check_period => "24x7",
+		check_interval => 1,
+		max_check_attempts => 3,
+		check_command => "check-host-alive",
+		notification_period => "24x7",
+		notification_interval => 10,
+		notification_options => "d,u,r",
+		contact_groups => "slackgroup",
 		mode => "0644",
 	}	
 	
