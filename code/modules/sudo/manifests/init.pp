@@ -7,7 +7,7 @@ class sudo {
       owner => 'root',
       group => 'root',
       mode => '0444',
-      source => 'puppet:///modules/sudo/etc/sudoers',
+      source => 'puppet:///modules/sudo/sudoers',
       require => Package['sudo'],
   }
 }
