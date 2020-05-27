@@ -57,7 +57,7 @@ class nagios::config
 	
 	# Nagios Hosts
 
-	nagios_host { "db-i.foo.org.nz":
+	nagios_host { "test-i.foo.org.nz":
 		target => "/etc/nagios3/conf.d/ppt_hosts.cfg",
 		alias => "db",
 		check_period => "24x7",
