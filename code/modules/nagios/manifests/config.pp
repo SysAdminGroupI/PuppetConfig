@@ -115,7 +115,7 @@ class nagios::config
 		members =>"db-i.foo.org.nz",
 	}	
 	
-	nagios_hostgroup{ "remote-disks":
+	nagios_hostgroup{ "remote-servers":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
 		mode => "0644",
 		alias => "My Remote Disks",
@@ -203,11 +203,27 @@ class nagios::config
 		mode => "0644",
 	}
 	
-	nagios_service { "nrpe":
-		service_description => "nrpe servers",
-		hostgroup_name => "remote-disks",
+	nagios_service { "nrpe-disks":
+		service_description => "disks space",
+		hostgroup_name => "remote-servers",
 		target => "/etc/nagios3/conf.d/ppt_services.cfg",
 		check_command => "check_nrpe_1arg!check_hd",
+		max_check_attempts => 3,
+		retry_check_interval => 1,
+		normal_check_interval => 1,
+		check_period => "24x7",
+		notification_interval => 10,
+		notification_period => "24x7",
+		notification_options => "w,u,c,r",
+		contact_groups => "slackgroup",
+		mode => "0644",
+	}
+
+	nagios_service { "nrpe-users":
+		service_description => "users",
+		hostgroup_name => "remote-servers",
+		target => "/etc/nagios3/conf.d/ppt_services.cfg",
+		check_command => "check_nrpe_1arg!check_users",
 		max_check_attempts => 3,
 		retry_check_interval => 1,
 		normal_check_interval => 1,
