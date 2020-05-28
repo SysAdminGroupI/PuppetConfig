@@ -98,20 +98,6 @@ class nagios::config
 		contact_groups => "slackgroup",
 		mode => "0644",
 	}
-
-	nagios_host { "test-i.foo.org.nz":
-		target => "/etc/nagios3/conf.d/ppt_hosts.cfg",
-		alias => "test",
-		check_period => "24x7",
-		check_interval => 1,
-		max_check_attempts => 3,
-		check_command => "check-host-alive",
-		notification_period => "24x7",
-		notification_interval => 10,
-		notification_options => "d,u,r",
-		contact_groups => "slackgroup",
-		mode => "0644",
-	}	
 	
 	# Nagios Hostgroups
 
@@ -135,6 +121,14 @@ class nagios::config
 		alias => "My Remote Disks",
 		members =>"db-i.foo.org.nz, app-i.foo.org.nz, back-i.foo.org.nz",
 	}
+
+	nagios_hostgroup{ "web-servers":
+		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
+		mode => "0644",
+		alias => "My Web Servers",
+		members =>"app-i.foo.org.nz",
+	}
+	
 	
 	#Nagios Contacts
 	
@@ -183,6 +177,22 @@ class nagios::config
 		hostgroup_name => "my-database-servers",
 		target => "/etc/nagios3/conf.d/ppt_services.cfg",
 		check_command => "check_mysql_cmdlinecred!nagios!P@ssw0rd",
+		max_check_attempts => 3,
+		retry_check_interval => 1,
+		normal_check_interval => 1,
+		check_period => "24x7",
+		notification_interval => 10,
+		notification_period => "24x7",
+		notification_options => "w,u,c,r",
+		contact_groups => "slackgroup",
+		mode => "0644",
+	}
+
+	nagios_service { "https":
+		service_description => "web servers",
+		hostgroup_name => "web-servers",
+		target => "/etc/nagios3/conf.d/ppt_services.cfg",
+		check_command => "check_https",
 		max_check_attempts => 3,
 		retry_check_interval => 1,
 		normal_check_interval => 1,
