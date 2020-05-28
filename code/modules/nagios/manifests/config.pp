@@ -126,7 +126,7 @@ class nagios::config
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
 		mode => "0644",
 		alias => "My Web Servers",
-		members =>"app-i.foo.org.nz",
+		members =>"app-i.foo.org.nz, db-i.foo.org.nz",
 	}
 	
 	
