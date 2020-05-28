@@ -59,7 +59,7 @@ class nagios::config
 
 	nagios_host { "db-i.foo.org.nz":
 		target => "/etc/nagios3/conf.d/ppt_hosts.cfg",
-		alias => "db",
+		alias => "Database Server",
 		check_period => "24x7",
 		check_interval => 1,
 		max_check_attempts => 3,
@@ -73,7 +73,7 @@ class nagios::config
 
 	nagios_host { "app-i.foo.org.nz":
 		target => "/etc/nagios3/conf.d/ppt_hosts.cfg",
-		alias => "app",
+		alias => "Application Server",
 		check_period => "24x7",
 		check_interval => 1,
 		max_check_attempts => 3,
@@ -87,7 +87,7 @@ class nagios::config
 
 	nagios_host { "back-i.foo.org.nz":
 		target => "/etc/nagios3/conf.d/ppt_hosts.cfg",
-		alias => "back",
+		alias => "Backup Server",
 		check_period => "24x7",
 		check_interval => 1,
 		max_check_attempts => 3,
@@ -104,21 +104,21 @@ class nagios::config
 	nagios_hostgroup { "my-ssh-servers":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
 		mode => "0644",
-		alias => "My SSH servers",
+		alias => "My SSH Servers",
 		members =>"db-i.foo.org.nz, app-i.foo.org.nz, back-i.foo.org.nz",
 	}
 
 	nagios_hostgroup { "my-database-servers":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
 		mode => "0644",
-		alias => "My database servers",
+		alias => "My Database Servers",
 		members =>"db-i.foo.org.nz",
 	}	
 	
 	nagios_hostgroup{ "remote-servers":
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
 		mode => "0644",
-		alias => "My Remote Disks",
+		alias => "My NRPE Server",
 		members =>"db-i.foo.org.nz, app-i.foo.org.nz, back-i.foo.org.nz",
 	}
 
@@ -156,7 +156,7 @@ class nagios::config
 	# Nagios Services
 
 	nagios_service { "ssh":
-		service_description => "ssh servers",
+		service_description => "SSH Status",
 		hostgroup_name => "my-ssh-servers",
 		target => "/etc/nagios3/conf.d/ppt_services.cfg",
 		check_command => "check_ssh",
@@ -172,7 +172,7 @@ class nagios::config
 	}
 
 	nagios_service { "mysql":
-		service_description => "mysql servers",
+		service_description => "MySQL Status",
 		hostgroup_name => "my-database-servers",
 		target => "/etc/nagios3/conf.d/ppt_services.cfg",
 		check_command => "check_mysql_cmdlinecred!nagios!P@ssw0rd",
@@ -188,7 +188,7 @@ class nagios::config
 	}
 
 	nagios_service { "https":
-		service_description => "web servers",
+		service_description => "HTTPS Status",
 		hostgroup_name => "web-servers",
 		target => "/etc/nagios3/conf.d/ppt_services.cfg",
 		check_command => "check_https",
@@ -204,7 +204,7 @@ class nagios::config
 	}
 	
 	nagios_service { "nrpe-disks":
-		service_description => "disks space",
+		service_description => "Disks Space",
 		hostgroup_name => "remote-servers",
 		target => "/etc/nagios3/conf.d/ppt_services.cfg",
 		check_command => "check_nrpe_1arg!check_hd",
@@ -220,7 +220,7 @@ class nagios::config
 	}
 
 	nagios_service { "nrpe-users":
-		service_description => "users",
+		service_description => "Users",
 		hostgroup_name => "remote-servers",
 		target => "/etc/nagios3/conf.d/ppt_services.cfg",
 		check_command => "check_nrpe_1arg!check_users",
