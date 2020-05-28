@@ -3,7 +3,7 @@ class nrpe::config {
 		ensure => present,
 		source_permissions => 'ignore',
 		source => 'puppet:///modules/nrpe/nrpe.cfg',
-		mode => '0444',
+		mode => '0644',
 		owner => 'root',
 		group => 'root',
 		require => Class["nrpe::install"],
