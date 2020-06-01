@@ -98,6 +98,20 @@ class nagios::config
 		contact_groups => "slackgroup",
 		mode => "0644",
 	}
+
+	nagios_host { "10.25.137.160":
+		target => "/etc/nagios3/conf.d/ppt_hosts.cfg",
+		alias => "Storage Server",
+		check_period => "24x7",
+		check_interval => 5,
+		max_check_attempts => 3,
+		check_command => "check-host-alive",
+		notification_period => "24x7",
+		notification_interval => 10,
+		notification_options => "d,u,r",
+		contact_groups => "slackgroup",
+		mode => "0644",
+	}
 	
 	# Nagios Hostgroups
 
