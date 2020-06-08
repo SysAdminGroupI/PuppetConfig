@@ -32,6 +32,7 @@ node 'mgmt-i.foo.org.nz' {
 }
 
 node 'db-i.foo.org.nz' {
+	include ufw
 	include cron
 	include sudo
 	include ntp_service
@@ -42,9 +43,23 @@ node 'db-i.foo.org.nz' {
 	package { 'vim': 
 		ensure => present,
 	}
+
+	ufw::allow { 'ssh':
+		port => '22',
+	}
+
+	ufw::allow { 'mysql':
+		port => '3306',
+	}
+
+	ufw::allow { 'nrpe':
+		port => '5666',
+		from => '10.25.138.148',
+	}
 }
 
 node 'app-i.foo.org.nz' {
+	include ufw
 	include cron
 	include sudo
 	include ntp_service
@@ -55,9 +70,27 @@ node 'app-i.foo.org.nz' {
 	package { 'vim': 
 		ensure => present,
 	}
+
+	ufw::allow { 'ssh':
+		port => '22',
+	}
+
+	ufw::allow { 'http':
+		port => '80',
+	}
+
+	ufw::allow { 'https':
+		port => '443',
+	}
+
+	ufw::allow { 'nrpe':
+		port => '5666',
+		from => '10.25.138.148',
+	}
 }
 
 node 'back-i.foo.org.nz' {
+	include ufw
 	include cron
 	include sudo
 	include ntp_service  
@@ -66,5 +99,14 @@ node 'back-i.foo.org.nz' {
 	include nrpe
 	package { 'vim': 
 		ensure => present,
+	}
+
+	ufw::allow { 'ssh':
+		port => '22',
+	}
+
+	ufw::allow { 'nrpe':
+		port => '5666',
+		from => '10.25.138.148',
 	}
 }
