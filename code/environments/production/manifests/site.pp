@@ -15,19 +15,19 @@ node 'mgmt-i.foo.org.nz' {
 	}
 
 	ufw::allow { 'ssh':
-		port => '22'
+		port => '22',
 	}
 
-	ufw::allow { 'ssh':
-		port => '8140'
+	ufw::allow { 'puppet':
+		port => '8140',
 	}
 
-	ufw::allow { 'ssh':
-		port => '80'
+	ufw::allow { 'http':
+		port => '80',
 	}
 
-	ufw::allow { 'ssh':
-		port => '443'
+	ufw::allow { 'https':
+		port => '443',
 	}
 }
 
