@@ -1,4 +1,5 @@
 node 'mgmt-i.foo.org.nz' {
+	include ufw
 	include nagios
 	include cron
 	package { 'vim': 
@@ -12,6 +13,22 @@ node 'mgmt-i.foo.org.nz' {
 	package { 'libcrypt-ssleay-perl': 
 		ensure => present,
 	}
+
+	ufw::allow { 'ssh':
+		port => '22',
+	}
+
+	ufw::allow { 'ssh':
+		port => '8140',
+	}
+
+	ufw::allow { 'ssh':
+		port => '80',
+	}
+
+	ufw::allow { 'ssh':
+		port => '443',
+	}
 }
 
 node 'db-i.foo.org.nz' {
@@ -22,8 +39,8 @@ node 'db-i.foo.org.nz' {
 	include puppetconf
 	include userconf
 	include nrpe
-	package {
-		'vim': ensure => present
+	package { 'vim': 
+		ensure => present,
 	}
 }
 
@@ -35,8 +52,8 @@ node 'app-i.foo.org.nz' {
 	include userconf
 	include nrpe
 	include owncloud
-	package {
-		'vim': ensure => present
+	package { 'vim': 
+		ensure => present,
 	}
 }
 
@@ -47,7 +64,7 @@ node 'back-i.foo.org.nz' {
 	include puppetconf
 	include userconf
 	include nrpe
-	package {
-		'vim': ensure => present
+	package { 'vim': 
+		ensure => present,
 	}
 }
