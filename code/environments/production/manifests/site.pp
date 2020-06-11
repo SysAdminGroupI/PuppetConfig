@@ -90,6 +90,7 @@ node 'app-i.foo.org.nz' {
 }
 
 node 'back-i.foo.org.nz' {
+	include mariadb
 	include ufw
 	include cron
 	include sudo
@@ -108,5 +109,9 @@ node 'back-i.foo.org.nz' {
 	ufw::allow { 'nrpe':
 		port => '5666',
 		from => '10.25.138.148',
+	}
+
+	ufw::allow { 'mysql':
+		port => '3306',
 	}
 }
