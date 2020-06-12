@@ -126,7 +126,7 @@ class nagios::config
 		target => "/etc/nagios3/conf.d/ppt_hostgroups.cfg",
 		mode => "0644",
 		alias => "My Database Servers",
-		members =>"db-i.foo.org.nz",
+		members =>"back-i.foo.org.nz",
 	}	
 	
 	nagios_hostgroup{ "remote-servers":
